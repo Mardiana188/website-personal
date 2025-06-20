@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wasting Alert | Edukasi & Pencegahan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gradient: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+            --gradient-accent: linear-gradient(135deg, #f72585 0%, #b5179e 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+        
+        .navbar.scrolled {
+            background: rgba(67, 97, 238, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .navbar.scrolled .nav-logo,
+        .navbar.scrolled .nav-link {
+            color: white;
+        }
+        
+        .navbar.scrolled .nav-link:hover {
+            color: var(--accent);
+        }
+        
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .nav-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-logo i {
+            margin-right: 0.5rem;
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-link {
+            color: var(--dark);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: var(--gradient);
+            color: white;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%23f8f9fa"></path><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%23f8f9fa"></path><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%23f8f9fa"></path></svg>');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+        
+        .hero-text {
+            flex: 1;
+            padding-right: 2rem;
+            transform: translateX(-50px);
+            opacity: 0;
+            animation: slideInLeft 1s forwards 0.3s;
+        }
+        
+        .hero-image {
+            flex: 1;
+            position: relative;
+            transform: translateX(50px);
+            opacity: 0;
+            animation: slideInRight 1s forwards 0.3s;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+            margin-right: 1rem;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-outline {
+            border: 2px solid white;
+            color: white;
+            background: transparent;
+        }
+        
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* About Section */
+        .section {
+            padding: 6rem 5%;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--dark);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .about-text {
+            flex: 1;
+            padding-right: 3rem;
+        }
+        
+        .about-image {
+            flex: 1;
+            position: relative;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Stats Section */
+        .stats {
+            background: var(--gradient);
+            color: white;
+            padding: 4rem 5%;
+        }
+        
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+        
+        .stat-title {
+            font-size: 1.25rem;
+            font-weight: 500;
+        }
+        
+        /* Prevention Section */
+        .prevention {
+            background-color: var(--light);
+        }
+        
+        .prevention-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .prevention-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .prevention-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .prevention-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .prevention-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .prevention-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .prevention-card:hover .prevention-image img {
+            transform: scale(1.1);
+        }
+        
+        .prevention-content {
+            padding: 1.5rem;
+        }
+        
+        .prevention-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .prevention-desc {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        
+        .prevention-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .prevention-link i {
+            margin-left: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .prevention-link:hover {
+            color: var(--accent);
+        }
+        
+        .prevention-link:hover i {
+            transform: translateX(5px);
+        }
+        
+        /* Treatment Section */
+        .treatment {
+            background-color: white;
+        }
+        
+        .treatment-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.5s ease;
+        }
+        
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .timeline-item:nth-child(odd) {
+            padding-right: calc(50% + 2rem);
+            text-align: right;
+        }
+        
+        .timeline-item:nth-child(even) {
+            padding-left: calc(50% + 2rem);
+            text-align: left;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px var(--accent);
+        }
+        
+        .timeline-content {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eee;
+        }
+        
+        .timeline-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .timeline-date {
+            display: inline-block;
+            background: var(--gradient-accent);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+        
+        .timeline-desc {
+            color: #666;
+        }
+        
+        /* FAQ Section */
+        .faq {
+            background-color: var(--light);
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .accordion {
+            margin-top: 3rem;
+        }
+        
+        .accordion-item {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .accordion-item:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .accordion-header {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .accordion-header:hover {
+            background: #f9f9f9;
+        }
+        
+        .accordion-header i {
+            transition: transform 0.3s ease;
+        }
+        
+        .accordion-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .accordion-item.active .accordion-header {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .accordion-item.active .accordion-header i {
+            transform: rotate(180deg);
+        }
+        
+        .accordion-item.active .accordion-content {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 500px;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background-color: white;
+        }
+        
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .contact-card {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-text h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .contact-text p {
+            color: #666;
+        }
+        
+        .contact-form {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+            outline: none;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.4);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 5% 2rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-logo i {
+            margin-right: 0.5rem;
+            color: var(--accent);
+        }
+        
+        .footer-about {
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .footer-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-link {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-link a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-link a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .footer-newsletter p {
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .newsletter-form {
+            display: flex;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 0.6rem 1rem;
+            border: none;
+            border-radius: 50px 0 0 50px;
+            font-size: 0.9rem;
+        }
+        
+        .newsletter-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0 1.5rem;
+            border-radius: 0 50px 50px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-btn:hover {
+            background: #d81771;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 3rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                transform: translateX(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.4s ease;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-link {
+                margin: 1rem 0;
+                font-size: 1.2rem;
+            }
+            
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                margin-bottom: 3rem;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-text {
+                padding-right: 0;
+                margin-bottom: 3rem;
+                text-align: center;
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                padding-left: 50px;
+                padding-right: 0;
+                text-align: left;
+            }
+            
+            .timeline-dot {
+                left: 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                margin-bottom: 1rem;
+                margin-right: 0;
+            }
+            
+            .section {
+                padding: 4rem 5%;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="nav-logo">
+                <i class="fas fa-child"></i>
+                WastingAlert
+            </a>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link">Beranda</a></li>
+                <li><a href="#about" class="nav-link">Tentang</a></li>
+                <li><a href="#prevention" class="nav-link">Pencegahan</a></li>
+                <li><a href="#treatment" class="nav-link">Penanganan</a></li>
+                <li><a href="#faq" class="nav-link">FAQ</a></li>
+                <li><a href="#contact" class="nav-link">Kontak</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">Stop Wasting Pada Anak</h1>
+                <p class="hero-subtitle">Edukasi lengkap tentang wasting (gizi kurang akut) pada anak, termasuk pencegahan, penanganan, dan solusi praktis untuk orang tua.</p>
+                <div class="hero-buttons">
+                    <a href="#about" class="btn btn-primary">Pelajari Lebih Lanjut</a>
+                    <a href="#prevention" class="btn btn-outline">Cara Pencegahan</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Anak sehat">
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section class="section" id="about">
+        <h2 class="section-title">Apa Itu Wasting?</h2>
+        
+        <div class="about-content">
+            <div class="about-text">
+                <p>Wasting atau gizi kurang akut adalah kondisi dimana berat badan anak sangat rendah dibandingkan tinggi badannya. Ini merupakan indikator malnutrisi akut yang dapat mengancam jiwa jika tidak ditangani dengan tepat.</p>
+                <p>Berbeda dengan stunting yang mengukur tinggi badan terhadap usia, wasting mengukur berat badan terhadap tinggi badan, menunjukkan kekurangan gizi dalam jangka pendek.</p>
+                <p>Wasting pada anak dapat disebabkan oleh asupan makanan yang tidak mencukupi, infeksi berulang, atau kombinasi keduanya. Kondisi ini meningkatkan risiko kematian hingga 12 kali lipat dibandingkan anak dengan gizi baik.</p>
+                <a href="#stats" class="btn btn-primary" style="margin-top: 1.5rem;">Lihat Data Statistik</a>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1527525443983-6e60c75fff46?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Ilustrasi wasting">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Stats Section -->
+    <section class="section stats" id="stats">
+        <div class="stats-container">
+            <h2 class="section-title">Fakta Tentang Wasting</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">7.3%</div>
+                    <div class="stat-title">Anak Indonesia Mengalami Wasting</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number">12x</div>
+                    <div class="stat-title">Risiko Kematian Lebih Tinggi</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number">1 dari 3</div>
+                    <div class="stat-title">Kasus Wasting Tidak Terdiagnosis</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number">80%</div>
+                    <div class="stat-title">Dapat Dicegah Dengan Intervensi Tepat</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Prevention Section -->
+    <section class="section prevention" id="prevention">
+        <div class="prevention-container">
+            <h2 class="section-title">Pencegahan Wasting</h2>
+            
+            <div class="prevention-grid">
+                <div class="prevention-card">
+                    <div class="prevention-image">
+                        <img src="https://images.unsplash.com/photo-1544003484-3cd181d17917?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="ASI Eksklusif">
+                    </div>
+                    <div class="prevention-content">
+                        <h3 class="prevention-title">ASI Eksklusif</h3>
+                        <p class="prevention-desc">Pemberian ASI eksklusif selama 6 bulan pertama kehidupan bayi dapat mengurangi risiko wasting hingga 40%.</p>
+                        <a href="#" class="prevention-link">Pelajari lebih lanjut <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="prevention-card">
+                    <div class="prevention-image">
+                        <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="MPASI Bergizi">
+                    </div>
+                    <div class="prevention-content">
+                        <h3 class="prevention-title">MPASI Bergizi</h3>
+                        <p class="prevention-desc">Makanan Pendamping ASI yang kaya protein, energi, dan mikronutrien penting untuk mencegah wasting.</p>
+                        <a href="#" class="prevention-link">Pelajari lebih lanjut <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="prevention-card">
+                    <div class="prevention-image">
+                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Imunisasi">
+                    </div>
+                    <div class="prevention-content">
+                        <h3 class="prevention-title">Imunisasi Lengkap</h3>
+                        <p class="prevention-desc">Imunisasi melindungi anak dari penyakit infeksi yang dapat menyebabkan wasting.</p>
+                        <a href="#" class="prevention-link">Pelajari lebih lanjut <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="prevention-card">
+                    <div class="prevention-image">
+                        <img src="https://images.unsplash.com/photo-1584473457409-ceb3fde15a0d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Sanitasi">
+                    </div>
+                    <div class="prevention-content">
+                        <h3 class="prevention-title">Sanitasi & Higiene</h3>
+                        <p class="prevention-desc">Lingkungan bersih dan kebiasaan cuci tangan mencegah infeksi penyebab wasting.</p>
+                        <a href="#" class="prevention-link">Pelajari lebih lanjut <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="prevention-card">
+                    <div class="prevention-image">
+                        <img src="https://images.unsplash.com/photo-1516589091380-5d8e85700390?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Pemantauan">
+                    </div>
+                    <div class="prevention-content">
+                        <h3 class="prevention-title">Pemantauan Berkala</h3>
+                        <p class="prevention-desc">Penimbangan rutin di posyandu membantu deteksi dini wasting.</p>
+                        <a href="#" class="prevention-link">Pelajari lebih lanjut <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="prevention-card">
+                    <div class="prevention-image">
+                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Gizi Ibu Hamil">
+                    </div>
+                    <div class="prevention-content">
+                        <h3 class="prevention-title">Gizi Ibu Hamil</h3>
+                        <p class="prevention-desc">Gizi baik selama kehamilan mencegah bayi lahir dengan berat rendah.</p>
+                        <a href="#" class="prevention-link">Pelajari lebih lanjut <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Treatment Section -->
+    <section class="section treatment" id="treatment">
+        <div class="treatment-container">
+            <h2 class="section-title">Penanganan Wasting</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Tahap 1</div>
+                        <h3 class="timeline-title">Identifikasi & Diagnosis</h3>
+                        <p class="timeline-desc">Pengukuran berat badan terhadap tinggi badan menggunakan standar WHO. Anak dengan z-score <-3 SD dikategorikan wasting berat.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Tahap 2</div>
+                        <h3 class="timeline-title">Penanganan Medis</h3>
+                        <p class="timeline-desc">Untuk kasus wasting berat dengan komplikasi, diperlukan rawat inap dengan penanganan infeksi, ketidakseimbangan elektrolit, dan masalah medis lainnya.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Tahap 3</div>
+                        <h3 class="timeline-title">Terapi Gizi</h3>
+                        <p class="timeline-desc">Pemberian makanan terapeutik siap pakai (RUTF) yang tinggi energi dan protein, serta suplementasi mikronutrien esensial.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Tahap 4</div>
+                        <h3 class="timeline-title">Pemantauan & Tindak Lanjut</h3>
+                        <p class="timeline-desc">Pemantauan berat badan mingguan dan evaluasi respons terapi. Pendidikan gizi untuk orang tua tentang pola makan bergizi.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Tahap 5</div>
+                        <h3 class="timeline-title">Pencegahan Kambuh</h3>
+                        <p class="timeline-desc">Program pemberian makanan tambahan, imunisasi lengkap, dan perbaikan sanitasi lingkungan untuk mencegah wasting berulang.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section class="section faq" id="faq">
+        <div class="faq-container">
+            <h2 class="section-title">Pertanyaan Umum</h2>
+            
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Apa bedanya wasting dan stunting?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Wasting mengacu pada berat badan rendah terhadap tinggi badan (malnutrisi akut), sedangkan stunting mengacu pada tinggi badan rendah terhadap usia (malnutrisi kronis). Wasting menunjukkan kekurangan gizi jangka pendek yang lebih berbahaya secara langsung, sementara stunting menunjukkan dampak jangka panjang kekurangan gizi.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Bagaimana cara mengetahui anak saya mengalami wasting?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Tanda-tanda wasting termasuk:</p>
+                        <ul>
+                            <li>Berat badan sangat rendah untuk tinggi badannya</li>
+                            <li>Tulang iga dan tulang belakang terlihat jelas</li>
+                            <li>Otot-otot mengecil (terutama di lengan dan pantat)</li>
+                            <li>Wajah terlihat seperti orang tua</li>
+                            <li>Kulit kendur dan keriput</li>
+                        </ul>
+                        <p>Diagnosis pasti dilakukan dengan pengukuran antropometri oleh tenaga kesehatan.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Apakah wasting bisa disembuhkan?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Ya, wasting dapat diatasi dengan penanganan yang tepat. Anak dengan wasting berat tanpa komplikasi dapat sembuh dalam 6-8 minggu dengan pemberian makanan terapeutik siap pakai (RUTF) dan perawatan yang tepat. Namun, wasting yang tidak ditangani dapat berakibat fatal.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Makanan apa yang baik untuk anak dengan wasting?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Anak dengan wasting membutuhkan makanan tinggi energi dan protein seperti:</p>
+                        <ul>
+                            <li>Susu tinggi kalori</li>
+                            <li>Telur, daging, ikan</li>
+                            <li>Kacang-kacangan dan biji-bijian</li>
+                            <li>Minyak atau lemak sehat untuk menambah kalori</li>
+                            <li>Buah-buahan tinggi energi seperti pisang dan alpukat</li>
+                        </ul>
+                        <p>Untuk kasus berat, diperlukan makanan terapeutik khusus (RUTF) yang diformulasikan khusus.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Kapan harus membawa anak ke dokter?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Segera bawa anak ke fasilitas kesehatan jika:</p>
+                        <ul>
+                            <li>Anak sangat kurus dengan tulang yang menonjol</li>
+                            <li>Ada edema (bengkak) di kaki, tangan, atau wajah</li>
+                            <li>Anak tidak mau makan/minum sama sekali</li>
+                            <li>Ada tanda dehidrasi (mata cekung, tidak buang air kecil dalam 6 jam)</li>
+                            <li>Anak sangat lemah atau tidak sadar</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2 class="section-title">Kontak Kami</h2>
+                <p>Punya pertanyaan lebih lanjut tentang wasting? Hubungi tim ahli kami atau kunjungi fasilitas kesehatan terdekat.</p>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>Lokasi</h3>
+                        <p>Jl. Kesehatan No. 123, Jakarta Pusat</p>
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>Telepon</h3>
+                        <p>(021) 1234-5678</p>
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>Email</h3>
+                        <p>info@wastingalert.id</p>
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>Jam Operasional</h3>
+                        <p>Senin-Jumat: 08.00-16.00 WIB</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <h3>Kirim Pesan</h3>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Nama Anda" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Email Anda" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="tel" class="form-control" placeholder="Nomor Telepon">
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Pesan Anda" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Kirim Pesan</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <i class="fas fa-child"></i>
+                    WastingAlert
+                </div>
+                <p class="footer-about">Platform edukasi wasting pertama di Indonesia yang menyediakan informasi komprehensif tentang pencegahan dan penanganan wasting pada anak.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h3 class="footer-title">Tautan Cepat</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#home">Beranda</a></li>
+                    <li class="footer-link"><a href="#about">Tentang Wasting</a></li>
+                    <li class="footer-link"><a href="#prevention">Pencegahan</a></li>
+                    <li class="footer-link"><a href="#treatment">Penanganan</a></li>
+                    <li class="footer-link"><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3 class="footer-title">Sumber Daya</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#">Artikel</a></li>
+                    <li class="footer-link"><a href="#">Kalkulator Gizi</a></li>
+                    <li class="footer-link"><a href="#">Pusat Bantuan</a></li>
+                    <li class="footer-link"><a href="#">Kebijakan Privasi</a></li>
+                    <li class="footer-link"><a href="#">Syarat & Ketentuan</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3 class="footer-title">Newsletter</h3>
+                <p class="footer-newsletter">Berlangganan newsletter kami untuk mendapatkan informasi terbaru tentang pencegahan wasting.</p>
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Email Anda" required>
+                    <button type="submit" class="newsletter-btn"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2023 WastingAlert. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const accordionItem = header.parentElement;
+                accordionItem.classList.toggle('active');
+            });
+        });
+        
+        // Timeline animation on scroll
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        
+        function checkTimeline() {
+            const triggerBottom = window.innerHeight / 5 * 4;
+            
+            timelineItems.forEach(item => {
+                const itemTop = item.getBoundingClientRect().top;
+                
+                if (itemTop < triggerBottom) {
+                    item.classList.add('visible');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', checkTimeline);
+        checkTimeline(); // Run once on page load
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Form submission
+        const contactForm = document.querySelector('.contact-form form');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Pesan Anda telah terkirim. Terima kasih!');
+            this.reset();
+        });
+        
+        // Newsletter form
+        const newsletterForm = document.querySelector('.newsletter-form');
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const emailInput = this.querySelector('input[type="email"]');
+            alert(`Terima kasih telah berlangganan newsletter kami dengan email ${emailInput.value}`);
+            emailInput.value = '';
+        });
+    </script>
+</body>
+</html>
